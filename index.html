@@ -1,144 +1,201 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Acorn Guild Games</title>
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    background: #1a0e05;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-  }
-  .site-wrapper {
-    position: relative;
-    display: inline-block;
-    line-height: 0;
-  }
-  .site-wrapper img {
-    display: block;
-    max-width: 100vw;
-    max-height: 100vh;
-    width: auto;
-    height: auto;
-  }
-  .gate-hotspot {
-    position: absolute;
-    left: 80%;
-    top: 44%;
-    width: 13%;
-    height: 28%;
-    cursor: pointer;
-    border-radius: 48% 48% 10% 10% / 30% 30% 8% 8%;
-    outline: none;
-    background: transparent;
-    transition: box-shadow 0.25s ease, background 0.25s ease;
-  }
-  .gate-hotspot:hover {
-    background: radial-gradient(ellipse at 50% 40%,
-      rgba(180,220,255,0.18) 0%, rgba(100,170,255,0.12) 35%,
-      rgba(255,200,80,0.08) 65%, transparent 100%);
-    box-shadow:
-      0 0 18px 6px rgba(120,190,255,0.55),
-      0 0 45px 15px rgba(255,200,80,0.30),
-      0 0 80px 30px rgba(100,160,255,0.15);
-  }
-  .gate-hotspot:active {
-    box-shadow:
-      0 0 25px 10px rgba(120,190,255,0.80),
-      0 0 60px 25px rgba(255,220,100,0.50);
-  }
-  .modal-backdrop {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(10,6,2,0.82);
-    backdrop-filter: blur(6px);
-    z-index: 100;
-    justify-content: center;
-    align-items: center;
-  }
-  .modal-backdrop.open { display: flex; }
-  .modal {
-    background: linear-gradient(160deg, #2b1a08 0%, #1a0e04 100%);
-    border: 2px solid #8a6320;
-    border-radius: 18px;
-    padding: 48px 56px;
-    text-align: center;
-    color: #f0dfa8;
-    max-width: 420px;
-    width: 90%;
-    box-shadow: 0 8px 60px rgba(0,0,0,0.7);
-    animation: modalIn 0.35s cubic-bezier(.22,1,.36,1) both;
-  }
-  @keyframes modalIn {
-    from { opacity: 0; transform: scale(0.82) translateY(30px); }
-    to   { opacity: 1; transform: scale(1) translateY(0); }
-  }
-  .gate-icon { font-size: 3rem; display: block; margin-bottom: 16px; }
-  .modal h2 {
-    font-family: 'Palatino Linotype', Palatino, serif;
-    font-size: 1.9rem;
-    color: #f5d98a;
-    margin-bottom: 10px;
-  }
-  .modal p { font-size: 0.95rem; color: #c8b88a; line-height: 1.6; margin-bottom: 32px; }
-  .modal-divider {
-    width: 60px; height: 2px;
-    background: linear-gradient(90deg, transparent, #c9922a, transparent);
-    margin: 0 auto 28px;
-  }
-  .modal-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-  .btn-play {
-    background: linear-gradient(135deg, #c9922a, #f5d270, #c9922a);
-    color: #2b1a08; border: none; border-radius: 8px;
-    padding: 14px 36px; font-size: 1rem; font-weight: bold;
-    cursor: pointer; text-transform: uppercase;
-    box-shadow: 0 4px 20px rgba(200,150,30,0.45);
-    transition: transform 0.15s, box-shadow 0.25s;
-  }
-  .btn-play:hover { transform: translateY(-2px); box-shadow: 0 6px 30px rgba(240,200,60,0.65); }
-  .btn-close {
-    background: transparent; color: #9a8060;
-    border: 1px solid #5a4020; border-radius: 8px;
-    padding: 14px 28px; font-size: 0.95rem; cursor: pointer;
-    transition: color 0.2s, border-color 0.2s;
-  }
-  .btn-close:hover { color: #f0dfa8; border-color: #9a7040; }
-</style>
-</head>
-<body>
-<div class="site-wrapper">
-  <img src="mainwebsiteimage.png" alt="My Game Background">  <div class="gate-hotspot" id="gateBtn" role="button" tabindex="0"></div>
-</div>
-<div class="modal-backdrop" id="modal">
-  <div class="modal">
-    <span class="gate-icon">&#9876;&#65039;</span>
-    <h2>Enter the Guild</h2>
-    <div class="modal-divider"></div>
-    <p>The Town Gate stands open, brave adventurer.<br>Choose your path and begin your journey.</p>
-    <div class="modal-buttons">
-      <button class="btn-play" onclick="startPlay()">Play Now</button>
-      <button class="btn-close" onclick="closeModal()">Not Yet</button>
-    </div>
-  </div>
-</div>
-<script>
-  const gateBtn = document.getElementById('gateBtn');
-  const modal = document.getElementById('modal');
-  function openModal() { modal.classList.add('open'); }
-  function closeModal() { modal.classList.remove('open'); }
-  function startPlay() {
-    closeModal();
-    alert('Loading the adventure!\n\nReplace this with your game URL.');
-  }
-  gateBtn.addEventListener('click', openModal);
-  gateBtn.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openModal(); });
-  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-</script>
-</body>
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Acorn Guild Games</title> 
+    <style> 
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        } 
+        body { 
+            background: #1a0e05; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+        } 
+        .site-wrapper { 
+            position: relative; 
+            display: inline-block; 
+            line-height: 0; 
+        } 
+        .site-wrapper img { 
+            display: block; 
+            max-width: 100vw; 
+            max-height: 100vh; 
+            width: auto; 
+            height: auto; 
+        } 
+        .gate-hotspot { 
+            position: absolute; 
+            left: 80%; 
+            top: 44%; 
+            width: 13%; 
+            height: 28%; 
+            cursor: pointer; 
+            border-radius: 48% 48% 10% 10% / 30% 30% 8% 8%; 
+            outline: none; 
+            background: transparent; 
+            transition: box-shadow 0.25s ease, background 0.25s ease; 
+        } 
+        .gate-hotspot:hover { 
+            background: radial-gradient(ellipse at 50% 40%, rgba(180,220,255,0.18) 0%, rgba(100,170,255,0.12) 35%, rgba(255,200,80,0.08) 65%, transparent 100%); 
+            box-shadow: 0 0 18px 6px rgba(120,190,255,0.55), 0 0 45px 15px rgba(255,200,80,0.30), 0 0 80px 30px rgba(100,160,255,0.15); 
+        } 
+        .gate-hotspot:active { 
+            box-shadow: 0 0 25px 10px rgba(120,190,255,0.80), 0 0 60px 25px rgba(255,220,100,0.50); 
+        } 
+        .modal-backdrop { 
+            display: none; 
+            position: fixed; 
+            inset: 0; 
+            background: rgba(10,6,2,0.82); 
+            backdrop-filter: blur(6px); 
+            z-index: 100; 
+            justify-content: center; 
+            align-items: center; 
+        } 
+        .modal-backdrop.open { 
+            display: flex; 
+        } 
+        .modal { 
+            background: linear-gradient(160deg, #2b1a08 0%, #1a0e04 100%); 
+            border: 2px solid #8a6320; 
+            border-radius: 18px; 
+            padding: 48px 56px; 
+            text-align: center; 
+            color: #f0dfa8; 
+            max-width: 420px; 
+            width: 90%; 
+            box-shadow: 0 8px 60px rgba(0,0,0,0.7); 
+            animation: modalIn 0.35s cubic-bezier(.22,1,.36,1) both; 
+        } 
+        @keyframes modalIn { 
+            from { 
+                opacity: 0; 
+                transform: scale(0.82) translateY(30px); 
+            } 
+            to { 
+                opacity: 1; 
+                transform: scale(1) translateY(0); 
+            } 
+        } 
+        .gate-icon { 
+            font-size: 3rem; 
+            display: block; 
+            margin-bottom: 16px; 
+        } 
+        .modal h2 { 
+            font-family: 'Palatino Linotype', Palatino, serif; 
+            font-size: 1.9rem; 
+            color: #f5d98a; 
+            margin-bottom: 10px; 
+        } 
+        .modal p { 
+            font-size: 0.95rem; 
+            color: #c8b88a; 
+            line-height: 1.6; 
+            margin-bottom: 32px; 
+        } 
+        .modal-divider { 
+            width: 60px; 
+            height: 2px; 
+            background: linear-gradient(90deg, transparent, #c9922a, transparent); 
+            margin: 0 auto 28px; 
+        } 
+        .modal-buttons { 
+            display: flex; 
+            gap: 14px; 
+            justify-content: center; 
+            flex-wrap: wrap; 
+        } 
+        .btn-play { 
+            background: linear-gradient(135deg, #c9922a, #f5d270, #c9922a); 
+            color: #2b1a08; 
+            border: none; 
+            border-radius: 8px; 
+            padding: 14px 36px; 
+            font-size: 1rem; 
+            font-weight: bold; 
+            cursor: pointer; 
+            text-transform: uppercase; 
+            box-shadow: 0 4px 20px rgba(200,150,30,0.45); 
+            transition: transform 0.15s, box-shadow 0.25s; 
+        } 
+        .btn-play:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 6px 30px rgba(240,200,60,0.65); 
+        } 
+        .btn-close { 
+            background: transparent; 
+            color: #9a8060; 
+            border: 1px solid #5a4020; 
+            border-radius: 8px; 
+            padding: 14px 28px; 
+            font-size: 0.95rem; 
+            cursor: pointer; 
+            transition: color 0.2s, border-color 0.2s; 
+        } 
+        .btn-close:hover { 
+            color: #f0dfa8; 
+            border-color: #9a7040; 
+        } 
+    </style> 
+</head> 
+<body> 
+
+    <div class="site-wrapper"> 
+        <!-- Clean, lightweight relative image link -->
+        <img src="mainwebsiteimage.png" alt="My Game Background"> 
+        <div class="gate-hotspot" id="gateBtn" role="button" tabindex="0"></div> 
+    </div> 
+
+    <div class="modal-backdrop" id="modal"> 
+        <div class="modal"> 
+            <span class="gate-icon">⚔️</span> 
+            <h2>Enter the Guild</h2> 
+            <div class="modal-divider"></div> 
+            <p>The Town Gate stands open, brave adventurer.<br>Choose your path and begin your journey.</p> 
+            <div class="modal-buttons"> 
+                <button class="btn-play" onclick="startPlay()">Play Now</button> 
+                <button class="btn-close" onclick="closeModal()">Not Yet</button> 
+            </div> 
+        </div> 
+    </div> 
+
+    <script> 
+        const gateBtn = document.getElementById('gateBtn'); 
+        const modal = document.getElementById('modal'); 
+
+        function openModal() { 
+            modal.classList.add('open'); 
+        } 
+
+        function closeModal() { 
+            modal.classList.remove('open'); 
+        } 
+
+        function startPlay() { 
+            closeModal(); 
+            // Redirects straight to your new games page in the same tab
+            window.location.href = 'games.html'; 
+        } 
+
+        gateBtn.addEventListener('click', openModal); 
+        gateBtn.addEventListener('keydown', e => { 
+            if (e.key === 'Enter' || e.key === ' ') openModal(); 
+        }); 
+
+        modal.addEventListener('click', e => { 
+            if (e.target === modal) closeModal(); 
+        }); 
+
+        document.addEventListener('keydown', e => { 
+            if (e.key === 'Escape') closeModal(); 
+        }); 
+    </script> 
+</body> 
 </html>
